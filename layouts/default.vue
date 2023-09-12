@@ -19,9 +19,10 @@
                         <NuxtLink to="/"> SkoleTjek </NuxtLink>
                     </div>
                     <div class="flex gap-2">
-                        <div class="dropdown">
-                            <label tabindex="0" class="btn btn-outline  btn-sm">Click</label>
-                            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <div class="dropdown dropdown-bottom dropdown-end ">
+                            <label tabindex="0" class="btn btn-outline  btn-sm">Mine Klasser</label>
+                            <ul tabindex="0"
+                                class="dropdown-content z-[1] translate-y-[13.5px] menu p-2  bg-base-200 rounded-b-lg w-52 border-base-300 border-b-4 border-x-4 bg-opacity-80  shadow-lg backdrop-blur-md">
                                 <li><a>Item 1</a></li>
                                 <li><a>Item 2</a></li>
                             </ul>
