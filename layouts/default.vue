@@ -5,17 +5,17 @@
             <!-- Navbar -->
             <div
                 class="w-full navbar h-14 bg-base-200 backdrop-blur-md bg-opacity-70 shadow-xl border-b-4 border-base-300 sticky top-0 z-10">
-                <div v-motion :initial="{ opacity: 0, x: -10 }" :visible="{ opacity: 1, x: 0 }" class="flex-none md:hidden">
-                    <label for="my-drawer-3" class="btn btn-square btn-ghost text-2xl">
-                        <i class="fa-solid fa-align-justify"></i>
-                    </label>
-                    <div class="text-4xl font-semibold pl-2 md:pl-4 text-primary font-bungee hover:text-primary-focus">
-                        <NuxtLink to="/"> SkoleTjek </NuxtLink>
-                    </div>
+                <div class="flex-none">
+                    <Transition enterActiveClass="animate__animated animate__bounce">
+
+                        <label v-if="!largerThanMd" for="my-drawer-3" class="btn btn-square btn-ghost text-2xl">
+                            <i class="fa-solid fa-align-justify"></i>
+                        </label>
+                    </Transition>
+
                 </div>
                 <div class="justify-between flex w-full ">
-                    <div
-                        class="text-4xl font-semibold pl-2 md:pl-4 text-primary font-bungee hidden md:block hover:text-primary-focus">
+                    <div class="text-4xl font-semibold pl-2 md:pl-4 text-primary font-bungee hover:text-primary-focus">
                         <NuxtLink to="/"> SkoleTjek </NuxtLink>
                     </div>
                     <div class="flex gap-2">
@@ -67,7 +67,10 @@
 </template>
 
 <script setup lang="ts">
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+const breakpoints = useBreakpoints(breakpointsTailwind)
 
+const largerThanMd = breakpoints.greaterOrEqual('md') // only larger than sm
 </script>
 
 <style>

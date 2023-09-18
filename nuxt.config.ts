@@ -1,10 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  build: {
+    transpile: ['trpc-nuxt']
+  },
   devtools: { enabled: false },
   ssr: false,
   modules: [
     '@nuxtjs/tailwindcss',
-    '@vueuse/motion/nuxt',
     '@vueuse/nuxt',
   ],
   app: {
@@ -17,5 +19,7 @@ export default defineNuxtConfig({
         }]
     }
   },
-  css: ['@/assets/css/fonts.css', "@/assets/css/transitions.css", "@/assets/css/main.css"]
+  css: ['@/assets/css/fonts.css', "@/assets/css/transitions.css", "@/assets/css/main.css"],
+
+
 })
