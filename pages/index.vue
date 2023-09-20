@@ -1,35 +1,45 @@
 <template>
-    <div class="mx-auto prose">
-        <pre class=""> Bruger: {{ allUsers }} </pre>
-        <h2> Alle brugere</h2>
-        <li v-for="user in allUsers"> {{ user.firstName }}</li>
-        <h2> En bruger</h2>
-        <div class="join">
-            <input type="number" class="input input-bordered join-item" v-model="user_id">
-            <button @click="singleUser()" :disabled="!user_id" class="btn join-item">Find</button>
+    <div class=" flex  gap-8">
+        <div>
+            <div class="card w-96 bg-base-100 shadow-xl border-4">
+                <div class="card-body ">
+                    <h2 class="card-title">Alle brugere</h2>
+                    <li v-for="user in allUsers"> {{ user.name }}</li>
+                </div>
+            </div>
         </div>
-        <p> user_id: {{ user_id }}</p>
-        <p> Resp: {{ user }}</p>
-        <p>Bruger: </p>
+        <div>
+            <div class="card w-96 bg-base-100 shadow-xl border-4">
+                <div class="card-body">
+                    <h2 class="card-title">En bruger</h2>
+                    <div class="join">
+                        <input type="text" class="input input-bordered join-item" v-model="userName">
+                        <button @click="singleUser()" :disabled="!userName" class="btn join-item">Find</button>
+                    </div>
+                    <p v-if="user"> Bruger: {{ user }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
   
 
 <script setup lang="ts">
-import { User } from "@/db/schemas/schema"
+import {User} from "@prisma/client"
+
 const { $client } = useNuxtApp();
 const { userRouter } = $client
-const allUsers = await userRouter.getUsers.useQuery().data
-const user_id = ref<number | null>(null)
-const user = ref()
+const allUsers = await userRouter.list.useQuery().data
+
+
+const userName = ref<string>()
+
+const user = ref<User>()
 
 async function singleUser() {
-    if (user_id.value) {
-        const resp = await userRouter.getSingleUser.useQuery({ id: user_id.value }).data
-        console.log(resp);
-        // You can use the 'User' type here based on your response structure
-        user.value = resp;
-        // Other code related to user data processing
+    if (userName.value) {
+        const resp = await userRouter.byName.query({ name: userName.value })
+        user.value = resp
     } else {
         return;
     }

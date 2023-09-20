@@ -1,13 +1,14 @@
 import { inferAsyncReturnType } from '@trpc/server'
-import { db } from "../sqlite-service";
-
+import { PrismaClient } from '@prisma/client'
 /**
  * Creates context for an incoming request
  * @link https://trpc.io/docs/context
  */
 export const createContext = () => {
 
-    return {db}
+    const prisma = new PrismaClient()
+
+    return {prisma}
 }
 
 export type Context = inferAsyncReturnType<typeof createContext>

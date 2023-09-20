@@ -9,7 +9,7 @@
                     <Transition enterActiveClass="animate__animated animate__bounce">
 
                         <label v-if="!largerThanMd" for="my-drawer-3" class="btn btn-square btn-ghost text-2xl">
-                            <i class="fa-solid fa-align-justify"></i>
+                            <i class="fa-solid fa-align-justify"></i>s
                         </label>
                     </Transition>
 

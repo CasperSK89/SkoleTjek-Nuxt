@@ -1,0 +1,1 @@
+hvordan får jeg props med der er default på fx. createdAt og updatedAt
