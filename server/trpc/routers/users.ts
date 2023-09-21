@@ -20,7 +20,9 @@ export const userRouter = router({
         .input(z.object({ name: z.string() }))
         .query(async ({ input, ctx }) => {
             const { name } = input;
-            const resp = await ctx.prisma.user.findFirst({ where: { name: name } })
+            const resp = await ctx.prisma.user.findFirst({ where: { name: name}, include: {
+                posts: true,
+              }, })
             console.log(resp);
             if (!resp) {
 
