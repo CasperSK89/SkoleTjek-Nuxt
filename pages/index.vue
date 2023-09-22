@@ -4,7 +4,7 @@
             <div class="card w-96 bg-base-100 shadow-xl border-4">
                 <div class="card-body ">
                     <h2 class="card-title">Alle brugere</h2>
-                    <li v-for="user in allUsers"> {{ user }}</li>
+                    <li v-if="allUsers" v-for="user in allUsers"> {{ user }}</li>
                 </div>
             </div>
         </div>
@@ -38,7 +38,9 @@ const user = ref<UserByName>()
 async function singleUser() {
     if (userName.value) {
         const resp = await userRouter.byName.query({ name: userName.value })
+
         user.value = resp
+
     } else {
         return;
     }

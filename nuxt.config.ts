@@ -3,11 +3,17 @@ export default defineNuxtConfig({
   build: {
     transpile: ['trpc-nuxt']
   },
+  auth: {
+    provider: {
+      type: 'authjs'
+    }
+  },
   devtools: { enabled: false },
   ssr: false,
   modules: [
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
+    '@sidebase/nuxt-auth'
   ],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
