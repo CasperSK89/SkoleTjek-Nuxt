@@ -1,0 +1,9 @@
+
+Vi har user i ctx i trpc
+Vi har middleware på roles
+Vi har ingen adgang påner log ind side
+Vi har beskyttede server routes
+
+evt noget med nuxt permission til at forhindre knapper
+
+Ændre user så det er aktiv fra date i stedet for updated

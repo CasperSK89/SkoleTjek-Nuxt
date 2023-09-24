@@ -10,6 +10,7 @@ declare global {
 
     // Outputs
     type UserByName = RouterOutput['userRouter']['byName']
+    type UsersList = RouterOutput['userRouter']['list']
 
     // Inputs
     type RegisterUser = RouterInput['userRouter']['register']

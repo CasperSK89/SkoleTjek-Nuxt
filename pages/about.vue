@@ -26,6 +26,10 @@
 
 <script setup lang="ts">
 
+definePageMeta({
+    role: 1
+})
+
 </script>
 
 <style scoped></style>

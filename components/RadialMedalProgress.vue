@@ -29,8 +29,6 @@ const medalColor = computed(() => ({
     'text-gray-500': props.completedTasksSum >= props.weekschedule.silver && props.completedTasksSum < props.weekschedule.gold
 }))
 
-console.log(medalColor.value);
-console.log(props.completedTasksSum);
 
 </script>
 

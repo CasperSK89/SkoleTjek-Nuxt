@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   auth: {
     provider: {
       type: 'authjs'
+    },
+    globalAppMiddleware: {
+      isEnabled: true,
     }
   },
   devtools: { enabled: false },
@@ -26,6 +29,4 @@ export default defineNuxtConfig({
     }
   },
   css: ['@/assets/css/fonts.css', "@/assets/css/transitions.css", "@/assets/css/main.css"],
-
-
 })

@@ -6,6 +6,8 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
+
+
 export default NuxtAuthHandler({
   secret: process.env.AUTH_SECRET,
   pages: {
@@ -16,17 +18,18 @@ export default NuxtAuthHandler({
   providers: [
     // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
     CredentialsProvider.default({
-     
-      async authorize (credentials: any) {
+
+      async authorize(credentials: { username: string, password: string }) {
 
         const user = await prisma.users.findUnique({
           where: { name: credentials?.username },
-        })
 
-        if(!user) {
+        }
+        )
+        if (!user) {
           throw createError({
             statusCode: 403,
-            statusMessage: "Credentials not working",
+            statusMessage: "Ingen bruger",
           })
 
         }
@@ -36,11 +39,10 @@ export default NuxtAuthHandler({
         if (!isPasswordValid) {
           throw createError({
             statusCode: 403,
-            statusMessage: "Credentials not working",
+            statusMessage: "Kode virker ikke",
           })
 
         }
-
         return user
       }
     })
@@ -48,18 +50,20 @@ export default NuxtAuthHandler({
   callbacks: {
     // Specify here the payload of your token and session
     async jwt({ token, user }: { token: any, user: any }) {
-      if (user) { 
+      if (user) {
         token.id = user.id
-        token.nombre = user.name
+        token.name = user.name
         token.email = user.email
+        token.role = user.role
       }
-      return token
+      return Promise.resolve(token);
     },
     async session({ session, token }: { session: any, token: any }) {
       session.user.id = token.id
-      session.user.nombre = token.name
+      session.user.name = token.name
       session.user.email = token.email
-      return session
+      session.user.role = token.role
+      return Promise.resolve(session);
     },
   },
 })

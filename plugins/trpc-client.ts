@@ -1,6 +1,8 @@
 import { createTRPCNuxtClient, httpBatchLink } from 'trpc-nuxt/client'
 import type { AppRouter } from '~/server/trpc/routers'
 
+let token: string
+
 export default defineNuxtPlugin(() => {
   /**
    * createTRPCNuxtClient adds a `useQuery` composable

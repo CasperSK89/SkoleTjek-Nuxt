@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { publicProcedure, router } from '../trpc';
+import { publicProcedure, router, adminProcedure } from '../trpc';
 import { TRPCError } from '@trpc/server';
 import { hash } from "bcrypt"
 import { PrismaClient } from '@prisma/client'
@@ -8,8 +8,8 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export const userRouter = router({
-    list: publicProcedure
-        .query(async ({ ctx, }) => {
+    list: adminProcedure
+        .query(async ({ ctx }) => {
             const resp = await prisma.users.findMany({
                 orderBy: {
                     name: 'asc'
@@ -44,7 +44,7 @@ export const userRouter = router({
 
             console.log(input);
 
-            const userExists = await prisma.users.findFirst({
+            const userExists = await prisma.users.count({
                 where: {
                     OR: [
                         { email: email },
