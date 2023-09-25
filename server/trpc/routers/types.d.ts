@@ -8,6 +8,21 @@ type ErrorOutput = TRPCClientError<AppRouter>
 
 declare global {
 
+    type UserSession = {
+        user: {
+          name: string;
+          email: string;
+          id: string;
+          role: number;
+        };
+        expires: string;
+      };
+
+    type PageMeta = {
+        role: number;
+        // Other meta properties if any
+      };
+
     // Outputs
     type UserByName = RouterOutput['userRouter']['byName']
     type UsersList = RouterOutput['userRouter']['list']

@@ -6,6 +6,7 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} server/prisma/seed.ts"
   },
   "scripts": {
+    "generate prisma": "prisma generate",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

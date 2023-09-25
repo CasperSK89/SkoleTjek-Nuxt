@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { publicProcedure, router, adminProcedure } from '../trpc';
 import { TRPCError } from '@trpc/server';
-import { hash } from "bcrypt"
+import { hash, genSalt } from "bcrypt"
 import { PrismaClient } from '@prisma/client'
 
 
@@ -42,7 +42,7 @@ export const userRouter = router({
         .mutation(async ({ input, ctx }) => {
             const { name, email, password } = input;
 
-            console.log(input);
+
 
             const userExists = await prisma.users.count({
                 where: {
@@ -59,12 +59,18 @@ export const userRouter = router({
                     message: `There is already a user with that username or email`,
                 })
             }
+            // Generate a salt
+            const saltRounds = 12; // You can adjust the number of rounds as needed
+            const salt = await genSalt(saltRounds);
+
+            // Hash the password using the generated salt
+            const hashedPassword = await hash(password, salt);
 
             await prisma.users.create({
                 data: {
                     email: email,
                     name: name,
-                    password: await hash(password, 12)
+                    password: hashedPassword,
                 },
             })
 
