@@ -14,36 +14,18 @@
                     </Transition>
 
                 </div>
-                <div class="justify-between flex w-full px-3">
-                    <div class="text-4xl font-semibold  text-primary font-bungee hover:text-primary-focus">
-                        <NuxtLink to="/"> SkoleTjek </NuxtLink>
-                    </div>
-                    <div class="flex gap-2">
-                        <div class="dropdown dropdown-bottom dropdown-end ">
-                            <label tabindex="0" class="btn btn-outline  btn-sm">Mine Klasser</label>
-                            <ul tabindex="0"
-                                class="dropdown-content z-[1] translate-y-[13.5px] menu p-2  bg-base-200 rounded-b-lg w-52 border-base-300 border-b-4 border-x-4 bg-opacity-80  shadow-lg backdrop-blur-md">
-                                <li><a>Item 1</a></li>
-                                <li><a>Item 2</a></li>
-                            </ul>
+                <div class="flex w-full justify-between">
+                    <div class=" w-56 ">
+                        <div class="text-4xl font-semibold  text-primary font-bungee hover:text-primary-focus">
+                            <NuxtLink to="/"> SkoleTjek </NuxtLink>
                         </div>
-                        <NuxtLink class="hidden md:block" to="/about">
-                            <button class="btn btn-outline  btn-sm ">
-                                About
-                            </button>
-                        </NuxtLink>
-                        <Transition name="fade">
-                            <button v-if="currentUser" @click="signOut()" class="btn btn-sm btn-error">
-                                Log ud</button>
-                        </Transition>
-                        <Transition name="fade">
-
-                            <NuxtLink class="hidden md:block" to="/auth/login">
-                                <button v-if="!currentUser" class="btn btn-sm btn-secondary"> Log
-                                    ind</button>
-                            </NuxtLink>
-                        </Transition>
                     </div>
+                    <div class="w-full justify-center flex">
+                        <MyClasses></MyClasses>
+                    </div>
+                    <dix class="w-56 ">
+                        <Hello></Hello>
+                    </dix>
                 </div>
             </div>
             <!-- Page content here -->
