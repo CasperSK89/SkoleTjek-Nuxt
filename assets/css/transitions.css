@@ -16,3 +16,13 @@
 .fade-leave-to{
   opacity: 0;
 }
+
+
+.slide-down-fade-enter-from {
+  opacity: 0;
+  transform: translateY(-30px)
+  t
+}
+.slide-down-fade-enter-active {
+  transition: transform .3s;
+}

@@ -21,7 +21,7 @@
         <div class="card w-fit h-fit bg-base-100 shadow-xl border-4 ">
             <div class="card-body prose">
                 <h2 class="card-title">Din info:</h2>
-                <pre> {{ currentUser }}</pre>
+                <pre> {{ currentSession.user }}</pre>
             </div>
         </div>
     </div>
@@ -29,9 +29,10 @@
   
 
 <script setup lang="ts">
-const { data: currentUser } = useAuth()
 const { $client } = useNuxtApp();
 const { userRouter } = $client
+const { data } = useAuth()
+const currentSession = (data.value as UserSession)
 
 const userName = ref<string>()
 const user = ref<UserByName>()

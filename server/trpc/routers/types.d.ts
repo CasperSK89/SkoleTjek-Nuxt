@@ -13,12 +13,19 @@ declare global {
           name: string;
           email: string;
           id: string;
-          role: number;
+          role: UserRole;
         };
         expires: string;
       };
 
-    type PageMeta = {
+      enum UserRole {
+        SuperAdmin = 1,
+        SchoolAdmin = 2,
+        Teacher = 3,
+        Student = 4,
+      }
+
+      type PageMeta = {
         role: number;
         // Other meta properties if any
       };

@@ -3,33 +3,32 @@
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
             <!-- Navbar -->
-            <div
+            <header
                 class="w-full navbar h-14 bg-base-200 backdrop-blur-md bg-opacity-70 shadow-xl border-b-4 border-base-300 sticky top-0 z-10">
-                <div class="flex-none">
-                    <Transition name="fade">
+                <Transition name="fade">
 
-                        <label v-if="!largerThanMd" for="my-drawer-3" class="btn btn-square btn-ghost text-2xl">
-                            <i class="fa-solid fa-align-justify"></i>
-                        </label>
-                    </Transition>
+                    <label v-if="!largerThanMd" for="my-drawer-3" class="btn btn-square btn-ghost text-2xl">
+                        <i class="fa-solid fa-align-justify"></i>
+                    </label>
+                </Transition>
 
-                </div>
                 <div class="flex w-full justify-between">
-                    <div class=" w-56 ">
+                    <div class="w-56">
                         <div class="text-4xl font-semibold  text-primary font-bungee hover:text-primary-focus">
                             <NuxtLink to="/"> SkoleTjek </NuxtLink>
                         </div>
                     </div>
                     <div class="w-full justify-center flex">
                         <MyClasses></MyClasses>
+                        <NavBtn :name="'about'" :path="'/about'"></NavBtn>
                     </div>
-                    <dix class="w-56 ">
+                    <div class="w-56 ">
                         <Hello></Hello>
-                    </dix>
+                    </div>
                 </div>
-            </div>
-            <!-- Page content here -->
-            <div class="md:p-8 p-4 overflow-y-auto flex h-full">
+
+            </header>
+            <body class="md:p-8 p-4 overflow-y-auto flex h-full">
                 <Suspense>
 
                     <NuxtPage />
@@ -37,7 +36,7 @@
                         Loading...
                     </template>
                 </Suspense>
-            </div>
+            </body>
 
             <footer
                 class="footer footer-center bg-base-200 border-t-4 border-base-300 sticky bottom-0 h-14 backdrop-blur-md bg-opacity-70">
@@ -45,6 +44,7 @@
                     <p>Copyright © 2023 - All right reserved SkoleTjek</p>
                 </aside>
             </footer>
+
         </div>
         <div class="drawer-side">
             <label for="my-drawer-3" class="drawer-overlay"></label>
@@ -62,12 +62,10 @@
 <script setup lang="ts">
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 const breakpoints = useBreakpoints(breakpointsTailwind)
-const { signOut, data: currentUser } = useAuth()
-
 const largerThanMd = breakpoints.greaterOrEqual('md') // only larger than sm
 </script>
 
-<style>
+<style >
 body {
     overflow-y: scroll;
     @apply bg-base-100;
