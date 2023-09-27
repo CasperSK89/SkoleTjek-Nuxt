@@ -3,21 +3,22 @@
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
             <!-- Navbar -->
-            <header class="navbar h-14  shadow-xl border-b-4 border-base-300 sticky top-0  w-">
-                <div class="parent">
+            <header class=" z-10 navbar h-14  shadow-xl border-b-4 border-base-300 sticky top-0">
+                <div class="backdrop-hack w-full ">
                     <Transition name="fade">
                         <label v-if="!largerThanMd" for="my-drawer" class="btn btn-square btn-ghost text-2xl">
                             <i class="fa-solid fa-align-justify"></i>
                         </label>
                     </Transition>
-                    <div class="flex flex-row justify-between w-full absolute items-center h-full">
-                        <div class="w- shrink-0">
+                    <div class="flex flex-row justify-between w-full items-center">
+                        <div class="w-56 shrink-0">
                             <div class="text-4xl font-semibold  text-primary font-bungee hover:text-primary-focus">
                                 <NuxtLink to="/"> SkoleTjek </NuxtLink>
                             </div>
                         </div>
-                        <div class="w-full justify-center flex">
-                            <NavBtn name="Nyt ugeskema" path='/teacher/weekschedules/edit/[id]' side='left' icon="fa-solid fa-folder-plus">
+                        <div class="inline-grid grid-flow-col auto-cols-fr">
+                            <NavBtn name="Nyt ugeskema" path='/teacher/weekschedules/edit/[id]' side='left'
+                                icon="fa-solid fa-folder-plus">
                             </NavBtn>
                             <MyClasses></MyClasses>
                             <NavBtn name="Bibliotek" path='/teacher/library' side='right' icon="fa-solid fa-book"></NavBtn>
@@ -30,7 +31,7 @@
 
             </header>
 
-            <div class="md:p-8 p-4 overflow-y-auto flex h-full z-[-1] body">
+            <div class="md:p-8 p-4 overflow-y-auto flex h-full ">
                 <Suspense>
 
                     <NuxtPage />
@@ -67,16 +68,14 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 const largerThanMd = breakpoints.greaterOrEqual('md') // only larger than sm
 </script>
 
-<style scoped>
-.body {
-    overflow-y: hidden;
-    @apply bg-base-100;
-    background-image:
-        linear-gradient(#eee .12em, transparent .12em);
-    background-size: 100% 1.5em;
+<style >
+body {
+    overflow-y: visible;
+    background: url(../assets/css/asphalt-texture.jpg) repeat center center fixed;
+    background-size: 45%;
 }
 
-.parent::before {
+.backdrop-hack::before {
     content: '';
     position: absolute;
     width: 100%;

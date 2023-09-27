@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <div @mouseenter="showDropdown = true" @mouseleave="showDropdown = false"
-            class="bg-transparent text-md uppercase font-semibold flex items-center justify-center rounded-none w-36 border-x-primary border-x-2 btn-xs h-14 border-y-0 hover:bg-opacity-40 hover:bg-base-300 ">
+            class="bg-transparent text-md uppercase font-semibold flex items-center justify-center rounded-none  border-x-primary border-x-2 btn-xs h-14 border-y-0 hover:bg-opacity-40 hover:bg-base-300 ">
             <div class="flex flex-col w-full text-center">
                 <i class="fa-solid fa-school text-xl"></i>
                 mine klasser
@@ -9,7 +9,7 @@
         </div>
         <Transition name="fade">
             <div @mouseleave="showDropdown = false" @mouseenter="showDropdown = true" v-show="showDropdown"
-                class="z-[-1] w-fit border-x-4 border-b-4 rounded-b-lg mx-auto h-fit left-[50%] right-[50%] border-t-primary border-t-2 -translate-x-[50%] top-[60px] fixed gap-4 flex flex-row bg-base-200 backdrop-blur-md bg-opacity-80 px-4 pt-4 justify-between ">
+                class="shadow-xl container w-fit border-x-4 border-b-4 rounded-b-lg mx-auto h-fit left-[50%] right-[50%] border-t-primary border-t-2 -translate-x-[50%] top-[60px] fixed gap-4 flex flex-row bg-base-200 bg-opacity-80 px-4 pt-4 justify-between backdrop-blur-md ">
 
                 <div v-for="c in classes" class="flex flex-col w-32 ">
                     <p
@@ -51,4 +51,7 @@ const classes = ref([{
 ])
 </script>
 
-<style ></style>
+<style >
+
+
+</style>
