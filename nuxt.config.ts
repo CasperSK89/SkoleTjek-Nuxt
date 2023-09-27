@@ -29,4 +29,5 @@ export default defineNuxtConfig({
     }
   },
   css: ['@/assets/css/fonts.css', "@/assets/css/transitions.css", "@/assets/css/main.css"],
+  
 })

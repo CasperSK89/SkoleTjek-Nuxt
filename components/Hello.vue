@@ -1,5 +1,5 @@
 <template>
-    <div class="border-x-2 border-primary h-14 my-auto flex">
+    <div class="border-x-2 border-primary h-14 my-auto flex w-full">
         <div class="h-full pl-4 p-2"><i class="fa-regular fa-user text-xl"></i></div>
         <div class="flex flex-col w-full">
             <p class="uppercase text-xs font-semibold text-center truncate  "> Hej {{ currentSession?.user?.name }}</p>

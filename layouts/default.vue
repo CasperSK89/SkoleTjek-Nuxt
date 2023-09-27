@@ -1,34 +1,36 @@
 <template>
-    <div class="drawer min-h-screen">
-        <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+    <div class="drawer min-h-screen select-none">
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
             <!-- Navbar -->
-            <header
-                class="w-full navbar h-14 bg-base-200 backdrop-blur-md bg-opacity-70 shadow-xl border-b-4 border-base-300 sticky top-0 z-10">
-                <Transition name="fade">
-
-                    <label v-if="!largerThanMd" for="my-drawer-3" class="btn btn-square btn-ghost text-2xl">
-                        <i class="fa-solid fa-align-justify"></i>
-                    </label>
-                </Transition>
-
-                <div class="flex w-full justify-between">
-                    <div class="w-56">
-                        <div class="text-4xl font-semibold  text-primary font-bungee hover:text-primary-focus">
-                            <NuxtLink to="/"> SkoleTjek </NuxtLink>
+            <header class="navbar h-14  shadow-xl border-b-4 border-base-300 sticky top-0  w-">
+                <div class="parent">
+                    <Transition name="fade">
+                        <label v-if="!largerThanMd" for="my-drawer" class="btn btn-square btn-ghost text-2xl">
+                            <i class="fa-solid fa-align-justify"></i>
+                        </label>
+                    </Transition>
+                    <div class="flex flex-row justify-between w-full absolute items-center h-full">
+                        <div class="w- shrink-0">
+                            <div class="text-4xl font-semibold  text-primary font-bungee hover:text-primary-focus">
+                                <NuxtLink to="/"> SkoleTjek </NuxtLink>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-full justify-center flex">
-                        <MyClasses></MyClasses>
-                        <NavBtn :name="'about'" :path="'/about'"></NavBtn>
-                    </div>
-                    <div class="w-56 ">
-                        <Hello></Hello>
+                        <div class="w-full justify-center flex">
+                            <NavBtn name="Nyt ugeskema" path='/teacher/weekschedules/edit/[id]' side='left' icon="fa-solid fa-folder-plus">
+                            </NavBtn>
+                            <MyClasses></MyClasses>
+                            <NavBtn name="Bibliotek" path='/teacher/library' side='right' icon="fa-solid fa-book"></NavBtn>
+                        </div>
+                        <div class="w-56 shrink-0">
+                            <Hello></Hello>
+                        </div>
                     </div>
                 </div>
 
             </header>
-            <body class="md:p-8 p-4 overflow-y-auto flex h-full">
+
+            <div class="md:p-8 p-4 overflow-y-auto flex h-full z-[-1] body">
                 <Suspense>
 
                     <NuxtPage />
@@ -36,7 +38,7 @@
                         Loading...
                     </template>
                 </Suspense>
-            </body>
+            </div>
 
             <footer
                 class="footer footer-center bg-base-200 border-t-4 border-base-300 sticky bottom-0 h-14 backdrop-blur-md bg-opacity-70">
@@ -65,12 +67,23 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 const largerThanMd = breakpoints.greaterOrEqual('md') // only larger than sm
 </script>
 
-<style >
-body {
-    overflow-y: scroll;
+<style scoped>
+.body {
+    overflow-y: hidden;
     @apply bg-base-100;
     background-image:
         linear-gradient(#eee .12em, transparent .12em);
     background-size: 100% 1.5em;
+}
+
+.parent::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    @apply bg-base-200 backdrop-blur-md bg-opacity-80;
+    z-index: -1;
 }
 </style>
