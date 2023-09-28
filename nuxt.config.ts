@@ -3,6 +3,13 @@ export default defineNuxtConfig({
   build: {
     transpile: ['trpc-nuxt']
   },
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
   auth: {
     provider: {
       type: 'authjs',
@@ -14,6 +21,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   ssr: false,
   modules: [
+    '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     '@sidebase/nuxt-auth'

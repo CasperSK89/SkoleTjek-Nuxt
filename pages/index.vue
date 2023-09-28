@@ -1,6 +1,6 @@
 <template>
     <div class=" flex flex-wrap gap-8 m-auto">
-        <div class="card w-fit h-fit  bg-base-100 border">
+        <div class="card w-fit h-fit  bg-slate-100 border">
             <div class="card-body prose ">
                 <h2 class="card-title">Alle brugere</h2>
                 <pre v-for="user in allUsers"> {{ user }}</pre>
@@ -21,7 +21,7 @@
         <div class="card w-fit h-fit bg-base-100 border">
             <div class="card-body prose">
                 <h2 class="card-title">Din info:</h2>
-                <pre> {{ currentSession.user }}</pre>
+                <pre> {{ auth.currentSession.user }}</pre>
             </div>
         </div>
     </div>
@@ -29,10 +29,11 @@
   
 
 <script setup lang="ts">
+import { useAuthStore } from '~/stores/auth';
+
 const { $client } = useNuxtApp();
 const { userRouter } = $client
-const { data } = useAuth()
-const currentSession = (data.value as UserSession)
+const auth = useAuthStore()
 
 const userName = ref<string>()
 const user = ref<UserByName>()
