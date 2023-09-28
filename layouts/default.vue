@@ -3,30 +3,33 @@
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
             <!-- Navbar -->
-            <header class=" z-10 navbar h-14  shadow-xl border-b-4 border-base-300 sticky top-0">
-                <div class="backdrop-hack w-full ">
+            <header class=" z-10 navbar h-14 border-b border-base-300 sticky top-0">
+                <div class="backdrop-hack w-full">
                     <Transition name="fade">
                         <label v-if="!largerThanMd" for="my-drawer" class="btn btn-square btn-ghost text-2xl">
                             <i class="fa-solid fa-align-justify"></i>
                         </label>
                     </Transition>
-                    <div class="flex flex-row justify-between w-full items-center">
-                        <div class="w-56 shrink-0">
-                            <div class="text-4xl font-semibold  text-primary font-bungee hover:text-primary-focus">
+                    <div class="grid grid-cols-3 w-full items-center">
+                        <div class="col-span-1">
+                            <div
+                                class="md:text-5xl text-2xl font-semibold text-primary font-bungee hover:text-primary-focus">
                                 <NuxtLink to="/"> SkoleTjek </NuxtLink>
                             </div>
                         </div>
-                        <div class="inline-grid grid-flow-col auto-cols-fr">
+                        <div class="col-span-1 justify-center inline-grid grid-flow-col auto-cols-fr h-14">
                             <NavBtn name="Nyt ugeskema" path='/teacher/weekschedules/edit/[id]' side='left'
                                 icon="fa-solid fa-folder-plus">
                             </NavBtn>
                             <MyClasses></MyClasses>
                             <NavBtn name="Bibliotek" path='/teacher/library' side='right' icon="fa-solid fa-book"></NavBtn>
                         </div>
-                        <div class="w-56 shrink-0">
+
+                        <div class="col-span-1 flex justify-end">
                             <Hello></Hello>
                         </div>
                     </div>
+
                 </div>
 
             </header>
@@ -42,7 +45,7 @@
             </div>
 
             <footer
-                class="footer footer-center bg-base-200 border-t-4 border-base-300 sticky bottom-0 h-14 backdrop-blur-md bg-opacity-70">
+                class="footer footer-center bg-base-200 border-t border-base-300 sticky bottom-0 h-10 backdrop-blur-md bg-opacity-70">
                 <aside>
                     <p>Copyright © 2023 - All right reserved SkoleTjek</p>
                 </aside>
@@ -71,8 +74,7 @@ const largerThanMd = breakpoints.greaterOrEqual('md') // only larger than sm
 <style >
 body {
     overflow-y: visible;
-    background: url(../assets/css/asphalt-texture.jpg) repeat center center fixed;
-    background-size: 45%;
+
 }
 
 .backdrop-hack::before {

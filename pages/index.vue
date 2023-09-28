@@ -1,13 +1,13 @@
 <template>
     <div class=" flex flex-wrap gap-8 m-auto">
-        <div class="card w-fit h-fit  bg-base-100 shadow-xl border-4">
+        <div class="card w-fit h-fit  bg-base-100 border">
             <div class="card-body prose ">
                 <h2 class="card-title">Alle brugere</h2>
                 <pre v-for="user in allUsers"> {{ user }}</pre>
             </div>
         </div>
         <div>
-            <div class="card w-fit h-fit  bg-base-100 shadow-xl border-4">
+            <div class="card w-fit h-fit  bg-base-100 border">
                 <div class="card-body prose">
                     <h2 class="card-title">En bruger</h2>
                     <div class="join">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="card w-fit h-fit bg-base-100 shadow-xl border-4 ">
+        <div class="card w-fit h-fit bg-base-100 border">
             <div class="card-body prose">
                 <h2 class="card-title">Din info:</h2>
                 <pre> {{ currentSession.user }}</pre>
