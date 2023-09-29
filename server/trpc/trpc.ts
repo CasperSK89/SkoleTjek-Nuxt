@@ -21,7 +21,7 @@ export const publicProcedure = t.procedure
 
 const isAuthorized = middleware(async (opts) => {
     const { ctx } = opts;
-    if (!ctx.user?.role ) {
+    if (!ctx.user || ctx.user.role < 2) {
       throw new TRPCError({ code: 'UNAUTHORIZED' });
     }
     return opts.next({
@@ -31,4 +31,4 @@ const isAuthorized = middleware(async (opts) => {
     });
   });
    
-  export const adminProcedure = publicProcedure.use(isAuthorized);
+export const teacherProcedure = publicProcedure.use(isAuthorized);

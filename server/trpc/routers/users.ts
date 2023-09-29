@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { publicProcedure, router, adminProcedure } from '../trpc';
+import { publicProcedure, router, teacherProcedure } from '../trpc';
 import { TRPCError } from '@trpc/server';
 import { hash, genSalt } from "bcrypt"
 import { PrismaClient } from '@prisma/client'
@@ -8,7 +8,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export const userRouter = router({
-    list: adminProcedure
+    list: teacherProcedure
         .query(async ({ ctx }) => {
             const resp = await prisma.users.findMany({
                 orderBy: {
@@ -39,10 +39,8 @@ export const userRouter = router({
             email: z.string().email(),
             password: z.string().min(6),
         }))
-        .mutation(async ({ input, ctx }) => {
+        .mutation(async ({ input }) => {
             const { name, email, password } = input;
-
-
 
             const userExists = await prisma.users.count({
                 where: {

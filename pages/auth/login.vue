@@ -35,8 +35,7 @@ definePageMeta({
     }
 })
 
-const { $client } = useNuxtApp();
-const { userRouter } = $client
+const { authorize } = useAuthStore()
 const succes = ref(false)
 const showErr = ref(false)
 const username = ref('')

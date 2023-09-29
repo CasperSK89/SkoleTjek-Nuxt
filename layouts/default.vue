@@ -18,11 +18,14 @@
                             </div>
                         </div>
                         <div class="col-span-1 justify-center inline-grid grid-flow-col auto-cols-fr h-14">
-                            <NavBtn name="Nyt ugeskema" path='/teacher/weekschedules/edit/[id]' side='left'
-                                icon="fa-solid fa-folder-plus">
-                            </NavBtn>
-                            <MyClasses></MyClasses>
-                            <NavBtn name="Bibliotek" path='/teacher/library' side='right' icon="fa-solid fa-book"></NavBtn>
+                            <div v-if="currentUser" class="inline-grid grid-flow-col auto-cols-fr  h-full w-full">
+                                <NavBtn name="Nyt ugeskema" path='/teacher/weekschedules/edit/[id]' side='left'
+                                    icon="fa-solid fa-folder-plus">
+                                </NavBtn>
+                                <TeacherMenu></TeacherMenu>
+                                <NavBtn name="Bibliotek" path='/teacher/library' side='right' icon="fa-solid fa-book">
+                                </NavBtn>
+                            </div>
                         </div>
 
                         <div class="col-span-1 flex justify-end">
@@ -67,6 +70,7 @@
 
 <script setup lang="ts">
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+const { currentUser } = useAuthStore()
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const largerThanMd = breakpoints.greaterOrEqual('md') // only larger than sm
 </script>

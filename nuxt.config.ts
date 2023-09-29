@@ -10,6 +10,9 @@ export default defineNuxtConfig({
       ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
     ],
   },
+  imports: {
+    dirs: ['stores']
+  },
   auth: {
     provider: {
       type: 'authjs',
@@ -37,5 +40,10 @@ export default defineNuxtConfig({
     }
   },
   css: ['@/assets/css/fonts.css', "@/assets/css/transitions.css", "@/assets/css/main.css"],
-  
+  components: [
+        // ~/components/special-components/Btn.vue => <SpecialBtn />
+    { path: '@/components/teacher', prefix: 'Teacher' },
+    '@/components'
+  ]
+
 })

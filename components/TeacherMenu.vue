@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div >
         <div @mouseenter="showDropdown = true" @mouseleave="showDropdown = false"
             class=" bg-transparent text-md uppercase font-semibold flex items-center justify-center rounded-none  border-x-primary border-x-2 btn-xs h-full border-y-0 hover:bg-opacity-40 hover:bg-base-300 ">
             <div class="flex flex-col w-full text-center">
@@ -22,18 +22,27 @@
                     </ul>
                 </div>
                 <ul class="menu menu-sm rounded-box w-40 ">
-                    <li><a><i class="p-0.5 fa-solid fa-plus"></i>Opret hold</a></li>
-                    <li><a><i class="fa-regular fa-pen-to-square"></i>Rediger hold</a></li>
+                    <li><a @click="showNewGroup = true"><i class="p-0.5 fa-solid fa-plus"></i>Opret hold</a></li>
+                    <li>
+
+                        <NuxtLink :href="`/teacher/${currentUser?.id}/`"><i class="fa-regular fa-pen-to-square"></i> Rediger
+                            hold</NuxtLink>
+
+                    </li>
                     <p class="font-bungee font-bold uppercase text-center pt-2 text-xl text-primary-content">Skoletjek</p>
                 </ul>
             </div>
         </Transition>
+        <TeacherNewGroupModal v-model="showNewGroup"></TeacherNewGroupModal>
+
     </div>
 </template>
 
 <script setup lang="ts">
-const showDropdown = ref(false)
 
+const { currentUser } = useAuthStore()
+const showDropdown = ref(false)
+const showNewGroup = ref(false)
 const toggleDropdown = () => {
     // Add a small delay before showing the dropdown
     setTimeout(() => {
@@ -51,7 +60,4 @@ const classes = ref([{
 ])
 </script>
 
-<style >
-
-
-</style>
+<style ></style>

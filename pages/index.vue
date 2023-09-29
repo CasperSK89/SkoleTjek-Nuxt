@@ -21,7 +21,7 @@
         <div class="card w-fit h-fit bg-base-100 border">
             <div class="card-body prose">
                 <h2 class="card-title">Din info:</h2>
-                <pre> {{ auth.currentSession.user }}</pre>
+                <pre> {{ currentUser }}</pre>
             </div>
         </div>
     </div>
@@ -33,14 +33,13 @@ import { useAuthStore } from '~/stores/auth';
 
 const { $client } = useNuxtApp();
 const { userRouter } = $client
-const auth = useAuthStore()
+const { currentUser } = useAuthStore()
 
 const userName = ref<string>()
 const user = ref<UserByName>()
 const allUsers = ref<UsersList| null>(null)
 
 
-definePageMeta({ auth: false })
 
 await userList()
 
