@@ -29,7 +29,7 @@
                             hold</NuxtLink>
 
                     </li>
-                    <p class="font-bungee font-bold uppercase text-center pt-2 text-xl text-primary-content">Skoletjek</p>
+                    <p class="font-lilita font-bold  text-center pt-2 text-xl"><span class="text-primary ">Skole</span><span class="text-primary-content">Tjek</span> </p>
                 </ul>
             </div>
         </Transition>

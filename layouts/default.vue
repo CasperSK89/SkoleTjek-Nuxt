@@ -10,14 +10,14 @@
                             <i class="fa-solid fa-align-justify"></i>
                         </label>
                     </Transition>
-                    <div class="grid grid-cols-3 w-full items-center">
+                    <div class="grid grid-cols-3 w-full items-center px-4">
                         <div class="col-span-1">
                             <div
-                                class="md:text-5xl text-2xl font-semibold text-primary font-bungee hover:text-primary-focus">
-                                <NuxtLink to="/"> SkoleTjek </NuxtLink>
+                                class="md:text-[2.5rem] text-2xl font-extrabold font-lilita hover:text-primary-focus">
+                                <NuxtLink to="/"> <span class="text-primary ">Skole</span><span class="text-primary-content">Tjek</span> </NuxtLink>
                             </div>
                         </div>
-                        <div class="col-span-1 justify-center inline-grid grid-flow-col auto-cols-fr h-14">
+                        <div class="col-span-1 justify-center  h-14">
                             <div v-if="currentUser" class="inline-grid grid-flow-col auto-cols-fr  h-full w-full">
                                 <NavBtn name="Nyt ugeskema" path='/teacher/weekschedules/edit/[id]' side='left'
                                     icon="fa-solid fa-folder-plus">
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="col-span-1 flex justify-end">
-                            <Hello></Hello>
+                            <Hello :is-logged-in="currentUser != null" :user-name="currentUser?.name"></Hello>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
 
 <script setup lang="ts">
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-const { currentUser } = useAuthStore()
+const { currentUser } = storeToRefs(useAuthStore())
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const largerThanMd = breakpoints.greaterOrEqual('md') // only larger than sm
 </script>

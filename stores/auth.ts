@@ -1,13 +1,20 @@
 export const useAuthStore = defineStore('auth', () => {
-  const { data } = useAuth()
-  const currentSession = (data.value as UserSession)
-  const currentUser = currentSession.user
+  const userSession = ref<UserSession | null>()
+  const currentUser = ref<UserSession['user']>()
+  
+  authorize()
 
   async function authorize() {
-    console.log(currentUser);
+    const { data } = useAuth()
+    console.log(data.value?.user);
 
+    if (data.value?.user) {
+      userSession.value = (data.value as UserSession)
+      currentUser.value = userSession.value.user
+      
+    }
   }
 
 
-  return { authorize, currentSession, currentUser }
+  return { authorize, currentUser, userSession,  }
 })

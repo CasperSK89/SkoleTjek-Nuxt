@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        bungee: ['Bungee Outline', 'cursive',],
+        lilita: ['Lilita One', 'cursive',],
       },
     },
   },

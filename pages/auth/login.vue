@@ -48,7 +48,8 @@ const login = async (username: string, password: string) => {
         return
     }
     succes.value = true
-    setTimeout(navigate, 1000)
+    await authorize()
+    navigate()
 }
 
 function navigate() {
