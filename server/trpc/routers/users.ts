@@ -7,7 +7,7 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-export const userRouter = router({
+export const usersRouter = router({
     list: teacherProcedure
         .query(async ({ ctx }) => {
             const resp = await prisma.users.findMany({
@@ -80,4 +80,4 @@ export const userRouter = router({
 });
 
 // export type definition of API
-export type AppRouter = typeof userRouter;
+export type AppRouter = typeof usersRouter;

@@ -10,21 +10,32 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model Users {
-  id         String   @id @default(uuid())
+model User {
+  id         String      @id @default(uuid())
   password   String
-  email      String   @unique(map: "email")
-  name       String   @unique(map: "name")
-  role       Int      @default(1)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @updatedAt
-  activeFrom DateTime @default(now())
+  email      String      @unique(map: "email")
+  name       String      @unique(map: "name")
+  role       Int         @default(1)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @default(now()) @updatedAt
+  activeFrom DateTime    @default(now())
+  UserGroup  UserGroup[]
 }
 
-model Groups {
+model Group {
   id         String   @id @default(uuid())
   name       String
   year       Int
   createdAt  DateTime @default(now())
-  activeFrom DateTime 
+  activeFrom DateTime
+  user
+}
+
+model UserGroup {
+  user    User   @relation(fields: [userId], references: [id])
+  group   Group  @relation(fields: [groupId], references: [id])
+  userId  String @unique
+  groupId String @unique
+
+  @@id([userId, groupId])
 }

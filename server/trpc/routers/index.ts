@@ -1,8 +1,9 @@
 import { router } from "../trpc";
-import { userRouter } from "./users";
+import { usersRouter } from "./users";
+import { groupsRouter } from "./groups";
 
 export const appRouter = router({
-  userRouter,
+  usersRouter, groupsRouter,
 });
 
 // export type definition of API

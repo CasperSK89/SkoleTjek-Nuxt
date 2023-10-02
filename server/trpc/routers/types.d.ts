@@ -8,33 +8,33 @@ type ErrorOutput = TRPCClientError<AppRouter>
 
 declare global {
 
-    type UserSession = {
-        user: {
-          name: string;
-          email: string;
-          id: string;
-          role: UserRole;
-        };
-        expires: string;
-      };
+  type UserSession = {
+    user: {
+      name: string;
+      email: string;
+      id: string;
+      role: UserRole;
+    };
+    expires: string;
+  };
 
-      enum UserRole {
-        SuperAdmin = 1,
-        SchoolAdmin = 2,
-        Teacher = 3,
-        Student = 4,
-      }
+  enum UserRole {
+    SuperAdmin = 1,
+    SchoolAdmin = 2,
+    Teacher = 3,
+    Student = 4,
+  }
 
-      type PageMeta = {
-        role: number;
-        // Other meta properties if any
-      };
+  type PageMeta = {
+    role: number;
+    // Other meta properties if any
+  };
 
-    // Outputs
-    type UserByName = RouterOutput['userRouter']['byName']
-    type UsersList = RouterOutput['userRouter']['list']
-
-    // Inputs
-    type RegisterUser = RouterInput['userRouter']['register']
+  // Outputs
+  type UserByName = RouterOutput['userRouter']['byName']
+  type UsersList = RouterOutput['userRouter']['list']
+  // Inputs
+  type RegisterUser = RouterInput['userRouter']['register']
+  type createGroup = RouterInput['groupsRouter']['newGroup']
 
 }

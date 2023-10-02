@@ -3,8 +3,8 @@
         <div @mouseenter="showDropdown = true" @mouseleave="showDropdown = false"
             class=" bg-transparent text-md uppercase font-semibold flex items-center justify-center rounded-none  border-x-primary border-x-2 btn-xs h-full border-y-0 hover:bg-opacity-40 hover:bg-base-300 ">
             <div class="flex flex-col w-full text-center">
-                <i class="fa-solid fa-school text-xl"></i>
-                mine klasser
+                <i class="fa-solid fa-people-group text-xl"></i>
+                Mine hold
             </div>
         </div>
         <Transition name="fade">
@@ -41,6 +41,7 @@
 <script setup lang="ts">
 
 const { currentUser } = useAuthStore()
+
 const showDropdown = ref(false)
 const showNewGroup = ref(false)
 const toggleDropdown = () => {

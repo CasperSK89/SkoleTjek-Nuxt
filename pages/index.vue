@@ -32,7 +32,7 @@
 import { useAuthStore } from '~/stores/auth';
 
 const { $client } = useNuxtApp();
-const { userRouter } = $client
+const { usersRouter } = $client
 const { currentUser } = useAuthStore()
 
 const userName = ref<string>()
@@ -45,7 +45,7 @@ await userList()
 
 async function userList() {
     
-    const {data, error} = await userRouter.list.useQuery()
+    const {data, error} = await usersRouter.list.useQuery()
 
     if (error.value) {
         console.log(error.value.message);
@@ -57,7 +57,7 @@ async function userList() {
 async function singleUser() {
 
     if (userName.value) {
-        const resp = await userRouter.byName.query({ name: userName.value })
+        const resp = await usersRouter.byName.query({ name: userName.value })
 
         user.value = resp
 

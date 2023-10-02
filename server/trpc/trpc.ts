@@ -20,15 +20,23 @@ export const middleware = t.middleware
 export const publicProcedure = t.procedure
 
 const isAuthorized = middleware(async (opts) => {
-    const { ctx } = opts;
-    if (!ctx.user || ctx.user.role < 2) {
-      throw new TRPCError({ code: 'UNAUTHORIZED' });
-    }
-    return opts.next({
-      ctx: {
-        user: ctx.user,
-      },
-    });
+  const { ctx } = opts;
+
+  // Check if the user is logged in
+  if (!ctx.user) {
+    throw new TRPCError({ code: 'UNAUTHORIZED' });
+  }
+
+  // Check if the user's role is greater than or equal to 2
+  if (ctx.user.role < 2) {
+    throw new TRPCError({ code: 'FORBIDDEN', message: 'Insufficient role permissions' });
+  }
+
+  return opts.next({
+    ctx: {
+      user: ctx.user,
+    },
   });
-   
+});
+
 export const teacherProcedure = publicProcedure.use(isAuthorized);

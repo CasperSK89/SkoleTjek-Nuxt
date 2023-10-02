@@ -7,17 +7,17 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 
-export const userRouter = router({
+export const groupsRouter = router({
     newGroup: teacherProcedure
         .input(z.object({
             name: z.string(),
-            year: z.number(),
-            activeFrom: z.date(),
+            year: z.number().min(0).max(10),
+            activeFrom: z.coerce.date()
         }))
         .mutation(async ({ input }) => {
             const { name, year, activeFrom } = input;
 
-            await prisma.groups.create({
+           const createGroup = await prisma.groups.create({
                 data: {
                     name: name,
                     year: year,
@@ -25,8 +25,9 @@ export const userRouter = router({
                 },
             })
 
-            return { message: "Group  created" }
+            return { createGroup }
 
         })
-
 })
+
+export type AppRouter = typeof groupsRouter;

@@ -11,7 +11,7 @@
                 class="label-text-alt">(?) </span></span>
           </label>
           <input type="text" id="username" v-model="userData.name" class="input input-bordered" required />
-          <label for="username" class=" label absolute py-0 right-14" v-if="!showErr">
+          <label for="username" class=" label absolute py-0 right-14" v-if="showErr">
             <span class="label-text-alt text-error"> Brugernavn eller email er i brug.</span>
           </label>
         </div>
@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 const { $client } = useNuxtApp();
-const { userRouter } = $client
+const { usersRouter } = $client
 definePageMeta({ auth: false })
 
 const succes = ref(false)
@@ -69,7 +69,7 @@ async function Register() {
 
   try {
 
-    const resp = await userRouter.register.mutate(userData.value)
+    const resp = await usersRouter.register.mutate(userData.value)
 
     if (resp.message === "User created") {
 

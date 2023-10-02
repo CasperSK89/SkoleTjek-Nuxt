@@ -22,7 +22,7 @@
                                 <NavBtn name="Nyt ugeskema" path='/teacher/weekschedules/edit/[id]' side='left'
                                     icon="fa-solid fa-folder-plus">
                                 </NavBtn>
-                                <TeacherMenu></TeacherMenu>
+                                <TeacherMenuDropdown v-if="currentUser.role > 1"></TeacherMenuDropdown>
                                 <NavBtn name="Bibliotek" path='/teacher/library' side='right' icon="fa-solid fa-book">
                                 </NavBtn>
                             </div>
