@@ -35,7 +35,7 @@ definePageMeta({
     }
 })
 
-const { authorize } = useAuthStore()
+const { authorize, groupsByUser } = useAuthStore()
 const succes = ref(false)
 const showErr = ref(false)
 const username = ref('')
@@ -49,6 +49,7 @@ const login = async (username: string, password: string) => {
     }
     succes.value = true
     await authorize()
+    await groupsByUser()
     navigate()
 }
 

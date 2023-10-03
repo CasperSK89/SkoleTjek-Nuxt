@@ -14,6 +14,7 @@ declare global {
       email: string;
       id: string;
       role: UserRole;
+      schoolId: string
     };
     expires: string;
   };
@@ -33,6 +34,7 @@ declare global {
   // Outputs
   type UserByName = RouterOutput['userRouter']['byName']
   type UsersList = RouterOutput['userRouter']['list']
+  type GroupsByUser = RouterOutput['usersInGroups']['groupsByUser']
   // Inputs
   type RegisterUser = RouterInput['userRouter']['register']
   type createGroup = RouterInput['groupsRouter']['newGroup']

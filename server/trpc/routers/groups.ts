@@ -17,7 +17,7 @@ export const groupsRouter = router({
         .mutation(async ({ input }) => {
             const { name, year, activeFrom } = input;
 
-           const createGroup = await prisma.groups.create({
+           const createGroup = await prisma.group.create({
                 data: {
                     name: name,
                     year: year,

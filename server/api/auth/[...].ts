@@ -21,7 +21,7 @@ export default NuxtAuthHandler({
 
       async authorize(credentials: { username: string, password: string }) {
 
-        const user = await prisma.users.findUnique({
+        const user = await prisma.user.findUnique({
           where: { name: credentials?.username },
 
         }
@@ -55,6 +55,7 @@ export default NuxtAuthHandler({
         token.name = user.name
         token.email = user.email
         token.role = user.role
+        token.schoolId = user.schoolId
       }
       return Promise.resolve(token);
     },
@@ -63,6 +64,7 @@ export default NuxtAuthHandler({
       session.user.name = token.name
       session.user.email = token.email
       session.user.role = token.role
+      session.user.schoolId = token.schoolId
       return Promise.resolve(session);
     },
   },

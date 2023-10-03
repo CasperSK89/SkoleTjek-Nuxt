@@ -1,18 +1,45 @@
 export const useAuthStore = defineStore('auth', () => {
+
+  const { $client } = useNuxtApp();
+  const { usersInGroups, usersRouter } = $client
   const userSession = ref<UserSession | null>()
-  const currentUser = ref<UserSession['user']>()
-  
+  const currentUser = ref<UserSession['user'] | null>()
+
+  const groups = ref<GroupsByUser>()
   authorize()
+  groupsByUser()
+
+  async function groupsByUser() {
+
+    try {
+
+      const resp = await usersInGroups.groupsByUser.query()
+
+      groups.value = resp
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  }
 
   async function authorize() {
     const { data } = useAuth()
     if (data.value?.user) {
       userSession.value = (data.value as UserSession)
       currentUser.value = userSession.value.user
-      
+
     }
   }
 
 
-  return { authorize, currentUser, userSession,  }
+  return {
+    authorize,
+    groupsByUser,
+    currentUser,
+    userSession,
+    groups
+  }
 })

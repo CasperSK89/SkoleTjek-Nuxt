@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function seedUsers() {
-  const users = [
+  const user = [
     {
         email: 'user3@example.com',
         name: 'Alice Johnson',
@@ -98,8 +98,8 @@ async function seedUsers() {
 
   const seededUsers = [];
 
-  for (const userData of users) {
-    const user = await prisma.users.upsert({
+  for (const userData of user) {
+    const user = await prisma.user.upsert({
       where: { email: userData.email },
       update: {},
       create: {

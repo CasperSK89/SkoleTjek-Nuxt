@@ -10,7 +10,7 @@ const prisma = new PrismaClient()
 export const usersRouter = router({
     list: teacherProcedure
         .query(async ({ ctx }) => {
-            const resp = await prisma.users.findMany({
+            const resp = await prisma.user.findMany({
                 orderBy: {
                     name: 'asc'
                 },
@@ -21,7 +21,7 @@ export const usersRouter = router({
         .input(z.object({ name: z.string() }))
         .query(async ({ input, ctx }) => {
             const { name } = input;
-            const resp = await ctx.prisma.users.findFirst({ where: { name: name } })
+            const resp = await ctx.prisma.user.findFirst({ where: { name: name } })
             console.log(resp);
             if (!resp) {
 
@@ -42,7 +42,7 @@ export const usersRouter = router({
         .mutation(async ({ input }) => {
             const { name, email, password } = input;
 
-            const userExists = await prisma.users.count({
+            const userExists = await prisma.user.count({
                 where: {
                     OR: [
                         { email: email },
@@ -64,7 +64,7 @@ export const usersRouter = router({
             // Hash the password using the generated salt
             const hashedPassword = await hash(password, salt);
 
-            await prisma.users.create({
+            await prisma.user.create({
                 data: {
                     email: email,
                     name: name,

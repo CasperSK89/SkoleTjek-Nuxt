@@ -11,10 +11,10 @@
             <div @mouseleave="showDropdown = false" @mouseenter="showDropdown = true" v-show="showDropdown"
                 class="shadow-xl container w-fit border-x border-b rounded-b-lg mx-auto h-fit left-[50%] right-[50%] border-t-primary border-t-2 -translate-x-[50%] top-[63px] fixed gap-4 flex flex-row bg-base-200 bg-opacity-80 px-4 pt-4 justify-between backdrop-blur-md ">
 
-                <div v-for="c in classes" class="flex flex-col w-32 ">
+                <div v-for="c in groups" class="flex flex-col w-32 ">
                     <p
                         class="uppercase w-full text-center rounded-sm p-0.5 bg-primary-focus font-semibold bg-opacity-40 truncate">
-                        {{ c.name }}</p>
+                        {{ c.group.name }}</p>
                     <ul class="menu menu-xs rounded-box w-full px-0 ">
                         <li><a><i class="fa-solid fa-magnifying-glass"></i>Ugeskemaer</a></li>
                         <li><a><i class="fa-solid fa-bars-progress"></i>Elev statistik</a></li>
@@ -41,6 +41,7 @@
 <script setup lang="ts">
 
 const { currentUser } = useAuthStore()
+const { groups } = storeToRefs(useAuthStore())
 
 const showDropdown = ref(false)
 const showNewGroup = ref(false)

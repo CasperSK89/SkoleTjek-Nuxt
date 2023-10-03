@@ -44,10 +44,13 @@ const { modelValue } = defineProps({
 const closeModal = () => {
     emit('update:modelValue', false);
 };
+const { groupsByUser } = useAuthStore()
 
 
 const { $client } = useNuxtApp();
-const { groupsRouter } = $client
+const { groupsRouter, usersInGroups } = $client
+const { currentUser } = useAuthStore()
+
 
 const today = ref(new Date().toISOString().split('T')[0])
 const groupName = ref('')
@@ -64,10 +67,13 @@ async function submit() {
     disableBtn.value = true
 
     succes.value = true
-    const resp = await groupsRouter.newGroup.mutate({ name: groupName.value, year: year.value, activeFrom: selectedDateTime.value })
-    console.log(resp.createGroup.id)
+    const newGroup = await groupsRouter.newGroup.mutate({ name: groupName.value, year: year.value, activeFrom: selectedDateTime.value })
 
-    navigateTo({ path: `/teacher/${resp.createGroup.id}/` })
+
+    const addUserToGroup = await usersInGroups.addUser.mutate({ groupId: newGroup.createGroup.id, userId: currentUser.id })
+
+    await groupsByUser()
+    navigateTo({ path: `/teacher/${newGroup.createGroup.id}/` })
     closeModal()
 }
 
