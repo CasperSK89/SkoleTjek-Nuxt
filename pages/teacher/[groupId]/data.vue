@@ -5,6 +5,7 @@
              {{ groups?.find((x) => x.id === $route.params.groupId)?.name }}
              {{ $route.params.groupId }}
         </pre>
+
     </div>
 </template>
 

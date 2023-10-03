@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="submit">
         <div class="modal" :class="{ 'modal-open': modelValue }">
-            <div class="modal-box  relative max-w-full w-auto min-h-fit">
+            <div class="modal-box rounded-lg relative max-w-full w-auto min-h-fit">
                 <button type="button" @click="closeModal" class="btn btn-sm btn-outline btn-circle absolute right-2 top-2">
                     ✕
                 </button>

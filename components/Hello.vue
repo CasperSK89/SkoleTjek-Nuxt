@@ -22,6 +22,7 @@
 const { signOut } = useAuth()
 const { currentUser } = storeToRefs(useAuthStore())
 
+
 </script>
 
 <style scoped></style>

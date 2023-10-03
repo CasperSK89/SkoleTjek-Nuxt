@@ -32,12 +32,14 @@ declare global {
   };
 
   // Outputs
-  type UserByName = RouterOutput['userRouter']['byName']
-  type UsersList = RouterOutput['userRouter']['list']
+  type UserByName = RouterOutput['usersRouter']['byName']
+  type UsersList = RouterOutput['usersRouter']['list']
   type GroupsByUser = RouterOutput['usersInGroups']['groupsByUser']
   type Groups = RouterOutput['groupsRouter']['list']
   // Inputs
-  type RegisterUser = RouterInput['userRouter']['register']
+  type RegisterUser = RouterInput['usersRouter']['register']
   type createGroup = RouterInput['groupsRouter']['newGroup']
 
 }
+
+export { UserByName, UsersList, GroupsByUser, Groups, RegisterUser, createGroup}
