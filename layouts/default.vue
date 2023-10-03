@@ -37,7 +37,7 @@
 
             </header>
 
-            <div class="md:p-8 p-4 overflow-y-auto flex h-full ">
+            <div class="md:p-8 p-4 md:mx-72 border-x shadow-inner overflow-y-auto flex h-full ">
                 <Suspense>
 
                     <NuxtPage />

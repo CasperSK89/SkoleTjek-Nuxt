@@ -16,7 +16,7 @@ export const usersInGroups = router({
         .mutation(async ({ input }) => {
             const { userId, groupId } = input;
 
-            const addUser = await prisma.usersInGroups.create({
+            const resp = await prisma.usersInGroups.create({
                 data: {
                     userId: userId,
                     groupId: groupId,
@@ -48,6 +48,11 @@ export const usersInGroups = router({
             },
             include:{
                 group: true
+            },
+            orderBy:{
+                group:{
+                    name: 'asc'
+                }
             }
         })
         return resp

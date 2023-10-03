@@ -24,7 +24,9 @@ CREATE TABLE "Group" (
     "name" TEXT NOT NULL,
     "year" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "activeFrom" DATETIME NOT NULL
+    "activeFrom" DATETIME NOT NULL,
+    "schoolId" TEXT,
+    CONSTRAINT "Group_schoolId_fkey" FOREIGN KEY ("schoolId") REFERENCES "School" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -45,9 +47,3 @@ CREATE UNIQUE INDEX "email" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "name" ON "User"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "UsersInGroups_userId_key" ON "UsersInGroups"("userId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "UsersInGroups_groupId_key" ON "UsersInGroups"("groupId");

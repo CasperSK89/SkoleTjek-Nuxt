@@ -67,13 +67,14 @@ async function submit() {
     disableBtn.value = true
 
     succes.value = true
-    const newGroup = await groupsRouter.newGroup.mutate({ name: groupName.value, year: year.value, activeFrom: selectedDateTime.value })
+    try {
+        const newGroup = await groupsRouter.newGroup.mutate({ name: groupName.value, year: year.value, activeFrom: selectedDateTime.value })
+        await groupsByUser()
+        navigateTo({ path: `/teacher/${newGroup.createGroup.id}/` })
+    } catch (error) {
+        console.log(error);
+    }
 
-
-    const addUserToGroup = await usersInGroups.addUser.mutate({ groupId: newGroup.createGroup.id, userId: currentUser.id })
-
-    await groupsByUser()
-    navigateTo({ path: `/teacher/${newGroup.createGroup.id}/` })
     closeModal()
 }
 

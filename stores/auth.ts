@@ -10,19 +10,15 @@ export const useAuthStore = defineStore('auth', () => {
   groupsByUser()
 
   async function groupsByUser() {
-
     try {
-
       const resp = await usersInGroups.groupsByUser.query()
+      groups.value = resp.flatMap((x)=>x.group)
 
-      groups.value = resp
-
+      console.log(groupsOnlu);
+      
     } catch (error) {
-
       console.log(error);
-
     }
-
   }
 
   async function authorize() {
@@ -30,10 +26,8 @@ export const useAuthStore = defineStore('auth', () => {
     if (data.value?.user) {
       userSession.value = (data.value as UserSession)
       currentUser.value = userSession.value.user
-
     }
   }
-
 
   return {
     authorize,

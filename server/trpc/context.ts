@@ -12,6 +12,7 @@ interface User {
   name: string;
   email: string;
   role: number;
+  schoolId: string;
   // Add any other properties specific to your user object here
 }
 

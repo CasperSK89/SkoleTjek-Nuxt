@@ -14,6 +14,7 @@ model School {
   id    String @id @default(uuid())
   name  String @unique(map: "school name")
   users User[]
+  groups Group[]
 }
 
 model User {
@@ -36,6 +37,8 @@ model Group {
   year       Int
   createdAt  DateTime        @default(now())
   activeFrom DateTime
+  school     School?          @relation(fields: [schoolId], references: [id])
+  schoolId   String?
   users      UsersInGroups[]
 }
 

@@ -16,19 +16,14 @@
                         class="uppercase w-full text-center rounded-sm p-0.5 bg-primary-focus font-semibold bg-opacity-40 truncate">
                         {{ c.group.name }}</p>
                     <ul class="menu menu-xs rounded-box w-full px-0 ">
-                        <li><a><i class="fa-solid fa-magnifying-glass"></i>Ugeskemaer</a></li>
-                        <li><a><i class="fa-solid fa-bars-progress"></i>Elev statistik</a></li>
-                        <li><a><i class="fa-solid fa-timeline"></i>Status</a></li>
+                        <li><NuxtLink :href="`/teacher/${c.groupId}/weekschedules`"><i class="fa-solid fa-magnifying-glass"></i>Ugeskemaer</NuxtLink></li>
+                        <li><NuxtLink :href="`/teacher/${c.groupId}/data`"><i class="fa-solid fa-bars-progress"></i>Elev statistik</NuxtLink></li>
+                        <li><NuxtLink :href="`/teacher/${c.groupId}/edit`"><i class="fa-regular fa-pen-to-square"></i>Rediger</NuxtLink></li>
                     </ul>
                 </div>
                 <ul class="menu menu-sm rounded-box w-40 ">
                     <li><a @click="showNewGroup = true"><i class="p-0.5 fa-solid fa-plus"></i>Opret hold</a></li>
-                    <li>
-
-                        <NuxtLink :href="`/teacher/${currentUser?.id}/`"><i class="fa-regular fa-pen-to-square"></i> Rediger
-                            hold</NuxtLink>
-
-                    </li>
+                    
                     <p class="font-lilita font-bold  text-center pt-2 text-xl"><span class="text-primary ">Skole</span><span class="text-primary-content">Tjek</span> </p>
                 </ul>
             </div>
