@@ -35,6 +35,7 @@ declare global {
   type UserByName = RouterOutput['userRouter']['byName']
   type UsersList = RouterOutput['userRouter']['list']
   type GroupsByUser = RouterOutput['usersInGroups']['groupsByUser']
+  type Groups = RouterOutput['groupsRouter']['list']
   // Inputs
   type RegisterUser = RouterInput['userRouter']['register']
   type createGroup = RouterInput['groupsRouter']['newGroup']

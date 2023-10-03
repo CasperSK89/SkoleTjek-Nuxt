@@ -1,10 +1,14 @@
 <template>
-    <div class="prose">
-        <h1>Rediger hold</h1>
+    <div class="prose max-w-full">
+        <h1>Rediger hold {{ currentGroup?.name }}</h1>
+        
     </div>
 </template>
 
 <script setup lang="ts">
+const { groups } = useAuthStore()
+const route = useRoute()
+const currentGroup = ref(groups?.find((x) => x.id === route.params.groupId))
 
 </script>
 

@@ -37,7 +37,7 @@
 
             </header>
 
-            <div class="md:p-8 p-4 md:mx-72 border-x shadow-inner overflow-y-auto flex h-full ">
+            <div class="md:p-8 p-4 md:mx-72 border-x shadow-inner overflow-y-auto flex h-full bg-base-100">
                 <Suspense>
 
                     <NuxtPage />
@@ -78,7 +78,7 @@ const largerThanMd = breakpoints.greaterOrEqual('md') // only larger than sm
 <style >
 body {
     overflow-y: visible;
-
+@apply bg-zinc-50
 }
 
 .backdrop-hack::before {

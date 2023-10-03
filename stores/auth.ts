@@ -5,7 +5,7 @@ export const useAuthStore = defineStore('auth', () => {
   const userSession = ref<UserSession | null>()
   const currentUser = ref<UserSession['user'] | null>()
 
-  const groups = ref<GroupsByUser>()
+  const groups = ref<Groups>()
   authorize()
   groupsByUser()
 
@@ -13,8 +13,6 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const resp = await usersInGroups.groupsByUser.query()
       groups.value = resp.flatMap((x)=>x.group)
-
-      console.log(groupsOnlu);
       
     } catch (error) {
       console.log(error);
