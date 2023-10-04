@@ -1,5 +1,5 @@
 <template>
-    <div class="drawer min-h-screen select-none">
+    <div class="drawer min-h-screen ">
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
             <!-- Navbar -->
@@ -37,7 +37,7 @@
 
             </header>
 
-            <div class="md:p-8 p-4 xl:mx-72 border-x shadow-inner overflow-y-auto flex h-full bg-base-100">
+            <div class="md:p-8 p-4 max-w-7xl mx-auto w-full border-x shadow-inner overflow-y-auto flex h-full bg-base-100">
                 <Suspense>
 
                     <NuxtPage />
@@ -70,7 +70,7 @@
 
 <script setup lang="ts">
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-const { currentUser } = storeToRefs(useAuthStore())
+const currentUser = ref(useAuthStore().currentUser)
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const largerThanMd = breakpoints.greaterOrEqual('md') // only larger than sm
 </script>

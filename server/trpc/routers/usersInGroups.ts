@@ -7,7 +7,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 
-export const usersInGroups = router({
+export const usersInGroupsRouter = router({
     addUser: teacherProcedure
         .input(z.object({
             userId: z.string(),
@@ -25,40 +25,60 @@ export const usersInGroups = router({
             return { message: "User added" }
         }),
     addUsers: teacherProcedure
-        .input(z.object({
-            userId: z.string(),
-            groupId: z.string()
-        }))
+        .input(z.array(z.object({
+            groupId: z.string(),
+            userId: z.string()
+        })))
         .mutation(async ({ input }) => {
-            const { userId, groupId } = input;
 
-            const addUsers = await prisma.usersInGroups.updateMany({
-                data: {
-                    userId: userId,
-                    groupId: groupId,
-                },
-            })
-            return { message: "User added" }
+            input.forEach(async (x) => {
+
+                const resp = await prisma.usersInGroups.create({
+                    data: {
+                        userId: x.userId,
+                        groupId: x.groupId
+                    }
+                })
+                return resp
+            });
         }),
     groupsByUser: teacherProcedure
-    .query(async ({ ctx }) => {
-        const resp = await prisma.usersInGroups.findMany({
-            where: {
-               userId : ctx.user.id
-            },
-            include:{
-                group: true
-            },
-            orderBy:{
-                group:{
-                    name: 'asc'
+        .query(async ({ ctx }) => {
+            const resp = await prisma.usersInGroups.findMany({
+                where: {
+                    userId: ctx.user.id
+                },
+                include: {
+                    group: true
+                },
+                orderBy: {
+                    group: {
+                        name: 'asc'
+                    }
                 }
-            }
+            })
+            return resp
+        }),
+    usersInGroup: teacherProcedure
+        .input(z.object({ groupId: z.string() }))
+        .query(async ({ input }) => {
+
+            const { groupId } = input;
+
+            const resp = await prisma.user.findMany({
+                where: {
+                    groups: {
+                        some: {
+                            groupId: groupId
+                        }
+                    }
+                }
+            })
+            return resp
         })
-        return resp
-    }),
-    
-    
+
+
+
 })
 
-export type AppRouter = typeof usersInGroups;
+export type AppRouter = typeof usersInGroupsRouter;

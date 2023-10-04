@@ -1,291 +1,84 @@
 <template>
     <div class="prose max-w-full w-full">
-        <div class="flex mx-auto justify-between">
-            <h1>Rediger hold {{ currentGroup?.name }}</h1>
-            <button @click="showAddToGroup = true" class="btn btn-primary">
+        <div class="flex mx-auto justify-between items-center">
+            <h1 class="mb-0">Rediger hold {{ currentGroup?.name }}</h1>
+            <button @click="showAddToGroup = true" class="btn btn-primary btn-sm">
                 <i class="fa-solid fa-plus"></i>
                 eksisterende elever</button>
         </div>
-        <div class="overflow-x-auto ">
+        <div class="overflow-x-auto h-[calc(100%-10px)]">
             <table class="table table-pin-rows">
                 <!-- head -->
-                <thead>
+                <thead class="uppercase ">
                     <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
+                        <th>Rolle</th>
                         <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>Fritaget</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- row 1 -->
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
+                    <tr v-for="user in usersInGroup">
+                        
+                        <td>  {{ user.role }}</td>
                         <td>
                             <div class="flex items-center space-x-3">
 
                                 <div>
-                                    <div class="font-bold">Hart Hagerty</div>
-                                    <div class="text-sm opacity-50">United States</div>
+                                    <div class="font-bold"> {{ user.name }}</div>
+                                    <div class="text-sm opacity-50">Aktiv fra: {{ new
+                                        Date(user.activeFrom).toLocaleDateString() }}</div>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            Zemlak, Daniel and Leannon
-                            <br />
-                            <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                        </td>
-                        <td>Purple</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                    <!-- row 2 -->
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-3@56w.png"
-                                            alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Brice Swyre</div>
-                                    <div class="text-sm opacity-50">China</div>
-                                </div>
+
+                            <div class="flex gap-3 flex-wrap">
+                                <span class="badge badge-warning badge-sm uppercase font-semibold "><i
+                                        class="pr-1 fa-solid fa-triangle-exclamation"></i> Skal</span>
+                                <span class="badge badge-info badge-sm uppercase font-semibold "><i
+                                        class="pr-1 fa-solid fa-triangle-exclamation"></i> Lektier</span>
                             </div>
                         </td>
                         <td>
-                            Carroll Group
-                            <br />
-                            <span class="badge badge-ghost badge-sm">Tax Accountant</span>
-                        </td>
-                        <td>Red</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                    <!-- row 3 -->
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-4@56w.png"
-                                            alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Marjy Ferencz</div>
-                                    <div class="text-sm opacity-50">Russia</div>
-                                </div>
+                            <div class="flex justify-end gap-3">
+                                <button class="btn btn-secondary btn-xs">Fjern 
+                                <br/> fra hold</button>
+                                <button class="btn btn-primary btn-xs">Indstillinger</button>
                             </div>
                         </td>
-                        <td>
-                            Rowe-Schoen
-                            <br />
-                            <span class="badge badge-ghost badge-sm">Office Assistant I</span>
-                        </td>
-                        <td>Crimson</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
                     </tr>
-                    <!-- row 4 -->
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-5@56w.png"
-                                            alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Yancy Tear</div>
-                                    <div class="text-sm opacity-50">Brazil</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            Wyman-Ledner
-                            <br />
-                            <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-                        </td>
-                        <td>Indigo</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-5@56w.png"
-                                            alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Yancy Tear</div>
-                                    <div class="text-sm opacity-50">Brazil</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            Wyman-Ledner
-                            <br />
-                            <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-                        </td>
-                        <td>Indigo</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-5@56w.png"
-                                            alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Yancy Tear</div>
-                                    <div class="text-sm opacity-50">Brazil</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            Wyman-Ledner
-                            <br />
-                            <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-                        </td>
-                        <td>Indigo</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-5@56w.png"
-                                            alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Yancy Tear</div>
-                                    <div class="text-sm opacity-50">Brazil</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            Wyman-Ledner
-                            <br />
-                            <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-                        </td>
-                        <td>Indigo</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-5@56w.png"
-                                            alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Yancy Tear</div>
-                                    <div class="text-sm opacity-50">Brazil</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            Wyman-Ledner
-                            <br />
-                            <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-                        </td>
-                        <td>Indigo</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
+
                 </tbody>
                 <!-- foot -->
-                <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
-                        <th></th>
-                    </tr>
-                </tfoot>
+               
 
             </table>
         </div>
 
-        <TeacherAddToGroupModal v-model="showAddToGroup"></TeacherAddToGroupModal>
+        <TeacherAddToGroupModal v-model="showAddToGroup" :group-id="groupId.toString()"></TeacherAddToGroupModal>
     </div>
 </template>
 
 <script setup lang="ts">
-const { groups } = useAuthStore()
-const route = useRoute()
-const currentGroup = ref(groups?.find((x) => x.id === route.params.groupId))
+const { groups } = storeToRefs(useAuthStore())
+const { groupId } = useRoute().params
+const { $client } = useNuxtApp();
+const { usersInGroupsRouter } = $client
+
+const currentGroup = computed(() => groups.value?.find((x) => x.id === groupId));
 const showAddToGroup = ref(false)
+
+const usersInGroup = ref<UsersInGroup | null>(null)
+
+await getUsers()
+async function getUsers() {
+
+    usersInGroup.value = await usersInGroupsRouter.usersInGroup.query({ groupId: groupId.toString() })
+}
+
+
 </script>
 
 <style scoped></style>

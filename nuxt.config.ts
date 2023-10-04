@@ -43,5 +43,5 @@ export default defineNuxtConfig({
   components: [
     { path: '@/components/teacher', prefix: 'Teacher' },
     '@/components'
-  ], typescript: { tsConfig: { include: [ "types/*.d.ts", ] } }
+  ], typescript: { tsConfig: { include: ["types/*.d.ts",] } }
 })

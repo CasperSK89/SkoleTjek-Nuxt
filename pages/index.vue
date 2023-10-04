@@ -37,7 +37,7 @@ const { currentUser } = useAuthStore()
 
 const userName = ref<string>()
 const user = ref<UserByName>()
-const allUsers = ref<UsersList | null>(null)
+const allUsers = ref<StudentList | null>(null)
 
 
 
@@ -45,7 +45,7 @@ await userList()
 
 async function userList() {
 
-    const { data, error } = await usersRouter.list.useQuery()
+    const { data, error } = await usersRouter.studentList.useQuery()
 
     if (error.value) {
         console.log(error.value.message);

@@ -4,7 +4,6 @@
     hejsa {{ $route.params.groupId }}
     {{ resp[0].group }}
 
-    <TeacherAddToGroupModal v-model="showAddModal"></TeacherAddToGroupModal>
     <button class="btn" @click="showAddModal = true">Tilføj elever</button>
   </div>
 </template>

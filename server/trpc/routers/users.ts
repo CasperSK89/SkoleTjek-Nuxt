@@ -8,12 +8,33 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export const usersRouter = router({
-    list: teacherProcedure
-        .query(async ({ ctx }) => {
+    studentList: teacherProcedure
+    .input(z.object({ groupId: z.string() }))
+    .query(async ({ ctx, input }) => {
+
+        const { groupId } = input
             const resp = await prisma.user.findMany({
+                where: {
+                    schoolId: ctx.user.schoolId,
+                    NOT: {
+                        groups: {
+                            some: {
+                                groupId: groupId
+                            }
+                        }
+                    }
+                },
+                include: {
+                    groups: {
+                        include: {
+                            group: true
+                        }
+                    }
+                },
                 orderBy: {
                     name: 'asc'
                 },
+
             })
             return resp
         }),
