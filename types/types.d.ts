@@ -1,4 +1,4 @@
-import type { AppRouter } from '@/server/trpc/routers'
+import type { AppRouter } from '../server/trpc/routers'
 import { TRPCClientError } from '@trpc/client'
 import type { inferRouterOutputs, inferRouterInputs } from '@trpc/server'
 

@@ -2,10 +2,12 @@
     <div class="prose max-w-full w-full">
         <div class="flex mx-auto justify-between">
             <h1>Rediger hold {{ currentGroup?.name }}</h1>
-            <button @click="showAddToGroup = true" class="btn btn-primary">Tilføj elever</button>
+            <button @click="showAddToGroup = true" class="btn btn-primary">
+                <i class="fa-solid fa-plus"></i>
+                eksisterende elever</button>
         </div>
         <div class="overflow-x-auto ">
-            <table class="table table-pin-rows" >
+            <table class="table table-pin-rows">
                 <!-- head -->
                 <thead>
                     <tr>
@@ -30,7 +32,7 @@
                         </th>
                         <td>
                             <div class="flex items-center space-x-3">
-                                
+
                                 <div>
                                     <div class="font-bold">Hart Hagerty</div>
                                     <div class="text-sm opacity-50">United States</div>
@@ -139,7 +141,8 @@
                         <th>
                             <button class="btn btn-ghost btn-xs">details</button>
                         </th>
-                    </tr> <tr>
+                    </tr>
+                    <tr>
                         <th>
                             <label>
                                 <input type="checkbox" class="checkbox" />
@@ -168,7 +171,8 @@
                         <th>
                             <button class="btn btn-ghost btn-xs">details</button>
                         </th>
-                    </tr> <tr>
+                    </tr>
+                    <tr>
                         <th>
                             <label>
                                 <input type="checkbox" class="checkbox" />
@@ -197,7 +201,8 @@
                         <th>
                             <button class="btn btn-ghost btn-xs">details</button>
                         </th>
-                    </tr> <tr>
+                    </tr>
+                    <tr>
                         <th>
                             <label>
                                 <input type="checkbox" class="checkbox" />
@@ -226,7 +231,8 @@
                         <th>
                             <button class="btn btn-ghost btn-xs">details</button>
                         </th>
-                    </tr> <tr>
+                    </tr>
+                    <tr>
                         <th>
                             <label>
                                 <input type="checkbox" class="checkbox" />
