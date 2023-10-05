@@ -18,7 +18,7 @@
                             </div>
                         </div>
                         <div class="col-span-1 justify-center  h-14">
-                            <div v-if="currentUser" class="inline-grid grid-flow-col auto-cols-fr  h-full w-full">
+                            <div v-if="currentUser" class="md:inline-grid hidden grid-flow-col auto-cols-min justify-center  h-full w-full">
                                 <NavBtn name="Nyt ugeskema" path='/teacher/weekschedules/edit/[id]' side='left'
                                     icon="fa-solid fa-folder-plus">
                                 </NavBtn>
@@ -57,7 +57,7 @@
         </div>
         <div class="drawer-side">
             <label for="my-drawer-3" class="drawer-overlay"></label>
-            <ul class="menu p-4 pt-20 w-80 min-h-full bg-base-200">
+            <ul class="menu p-4 pt-20 w-80 min-h-full bg-base-200 ">
                 <!-- Sidebar content here -->
                 <li><a>Sidebar Item 1</a></li>
                 <li><a>Sidebar Item 2</a></li>

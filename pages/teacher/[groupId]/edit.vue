@@ -6,8 +6,8 @@
                 <i class="fa-solid fa-plus"></i>
                 eksisterende elever</button>
         </div>
-        <div class="overflow-x-auto h-[calc(100%-10px)]">
-            <table class="table table-pin-rows">
+        <div class="overflow-x-auto">
+            <table class="table table-pin-rows z-0">
                 <!-- head -->
                 <thead class="uppercase ">
                     <tr>
@@ -20,8 +20,8 @@
                 <tbody>
                     <!-- row 1 -->
                     <tr v-for="user in usersInGroup">
-                        
-                        <td>  {{ user.role }}</td>
+
+                        <td> {{ user.role }}</td>
                         <td>
                             <div class="flex items-center space-x-3">
 
@@ -42,22 +42,24 @@
                             </div>
                         </td>
                         <td>
-                            <div class="flex justify-end gap-3">
-                                <button class="btn btn-secondary btn-xs">Fjern 
-                                <br/> fra hold</button>
-                                <button class="btn btn-primary btn-xs">Indstillinger</button>
+                            <div class="flex justify-end  join">
+                                <button @click="showRemove = true" class=" join-item btn btn-error btn-xs">Fjern
+                                    <br /> </button>
+                                <button class="join-item  btn btn-neutral btn-xs">Indstillinger</button>
                             </div>
                         </td>
                     </tr>
-
+                    
                 </tbody>
                 <!-- foot -->
-               
-
+                
+                
             </table>
         </div>
-
-        <TeacherAddToGroupModal v-model="showAddToGroup" :group-id="groupId.toString()"></TeacherAddToGroupModal>
+        <DeleteModal v-model="showRemove" :delete-function="removeUser">
+        Vil du fjerne
+        </DeleteModal>
+        <TeacherAddToGroupModal v-model="showAddToGroup" :refresh-list="getUsers()" :group-id="groupId.toString()"></TeacherAddToGroupModal>
     </div>
 </template>
 
@@ -69,13 +71,31 @@ const { usersInGroupsRouter } = $client
 
 const currentGroup = computed(() => groups.value?.find((x) => x.id === groupId));
 const showAddToGroup = ref(false)
+const showRemove = ref(false)
 
 const usersInGroup = ref<UsersInGroup | null>(null)
 
 await getUsers()
-async function getUsers() {
 
-    usersInGroup.value = await usersInGroupsRouter.usersInGroup.query({ groupId: groupId.toString() })
+async function getUsers() {
+    try {
+
+        usersInGroup.value = await usersInGroupsRouter.usersInGroup.query({ groupId: groupId.toString() })
+
+    } catch (error) {
+        console.log(error);
+
+    }
+}
+async function removeUser(userId: string) {
+    try {
+
+        const resp = await usersInGroupsRouter.removeUser.mutate({ groupId: groupId.toString(), userId: userId })
+        await getUsers()
+    } catch (error) {
+        console.log(error);
+
+    }
 }
 
 

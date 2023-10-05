@@ -42,6 +42,23 @@ export const usersInGroupsRouter = router({
                 return resp
             });
         }),
+    removeUser: teacherProcedure
+        .input(z.object({
+            userId: z.string(),
+            groupId: z.string()
+        }))
+        .mutation(async ({ input }) => {
+            const { userId, groupId } = input;
+
+            const resp = await prisma.usersInGroups.delete({
+                where:{
+                    userId_groupId: {
+                        groupId: groupId,
+                        userId: userId
+                } }
+            })
+            return { message: "User deleted" }
+        }),
     groupsByUser: teacherProcedure
         .query(async ({ ctx }) => {
             const resp = await prisma.usersInGroups.findMany({

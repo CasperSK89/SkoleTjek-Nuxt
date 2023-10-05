@@ -1,7 +1,7 @@
 <template>
     <div >
         <div @mouseenter="showDropdown = true" @mouseleave="showDropdown = false"
-            class=" bg-transparent text-md uppercase font-semibold flex items-center justify-center rounded-none  border-x-primary border-x-2 btn-xs h-full border-y-0 hover:bg-opacity-40 hover:bg-base-300 ">
+            class="w-28 bg-transparent text-md uppercase font-semibold flex items-center justify-center rounded-none  border-x-primary border-x btn-xs h-full border-y-0 hover:bg-opacity-40 hover:bg-base-300 ">
             <div class="flex flex-col w-full text-center">
                 <i class="fa-solid fa-people-group text-xl"></i>
                 Mine hold
