@@ -1,6 +1,6 @@
 <template>
     <div>
-
+<h1>skoleadmin</h1>
     </div>
 </template>
 

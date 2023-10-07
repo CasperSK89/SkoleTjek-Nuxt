@@ -36,7 +36,7 @@ const { usersRouter } = $client
 const { currentUser } = useAuthStore()
 
 const userName = ref<string>()
-const user = ref<UserByName>()
+const user = ref<User>()
 const allUsers = ref<StudentList | null>(null)
 
 

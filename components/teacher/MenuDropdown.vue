@@ -24,7 +24,7 @@
                 <ul class="menu menu-sm rounded-box w-40 ">
                     <li><a @click="showNewGroup = true"><i class="p-0.5 fa-solid fa-plus"></i>Opret hold</a></li>
                     
-                    <p class="font-lilita font-bold  text-center pt-2 text-xl"><span class="text-primary ">Skole</span><span class="text-primary-content">Tjek</span> </p>
+                    <p class="font-lilita font-bold  text-center pt-2 text-xl"><span class="text-primary ">Skole</span><span class="text">Tjek</span> </p>
                 </ul>
             </div>
         </Transition>

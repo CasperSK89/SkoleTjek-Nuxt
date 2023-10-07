@@ -43,23 +43,23 @@
                         </td>
                         <td>
                             <div class="flex justify-end  join">
-                                <button @click="showRemove = true" class=" join-item btn btn-error btn-xs">Fjern
+                                <button @click="openDeleteModal(user.id, user.name)" class=" join-item btn btn-error btn-xs">Fjern
                                     <br /> </button>
-                                <button class="join-item  btn btn-neutral btn-xs">Indstillinger</button>
+                                <button class="join-item  btn btn-neutral btn-xs">Indstillinger WIP</button>
                             </div>
                         </td>
                     </tr>
-                    
                 </tbody>
                 <!-- foot -->
-                
-                
+
+
             </table>
         </div>
         <DeleteModal v-model="showRemove" :delete-function="removeUser">
-        Vil du fjerne
+            <p>Vil du fjerne <b>{{ selectedUser.name }}</b> bruger fra <b>{{ currentGroup?.name }}</b>?</p>
         </DeleteModal>
-        <TeacherAddToGroupModal v-model="showAddToGroup" :refresh-list="getUsers()" :group-id="groupId.toString()"></TeacherAddToGroupModal>
+        <TeacherAddToGroupModal v-model="showAddToGroup" :refresh-list="getUsers()" :group-id="groupId.toString()">
+        </TeacherAddToGroupModal>
     </div>
 </template>
 
@@ -72,6 +72,10 @@ const { usersInGroupsRouter } = $client
 const currentGroup = computed(() => groups.value?.find((x) => x.id === groupId));
 const showAddToGroup = ref(false)
 const showRemove = ref(false)
+const selectedUser = ref({
+    id: '',
+    name: ''
+})
 
 const usersInGroup = ref<UsersInGroup | null>(null)
 
@@ -87,17 +91,30 @@ async function getUsers() {
 
     }
 }
-async function removeUser(userId: string) {
+async function removeUser() {
     try {
 
-        const resp = await usersInGroupsRouter.removeUser.mutate({ groupId: groupId.toString(), userId: userId })
+        const resp = await usersInGroupsRouter.removeUser.mutate({ groupId: groupId.toString(), userId: selectedUser.value.id })
         await getUsers()
+        selectedUser.value = {
+            id: '',
+            name: ''
+        }
+        console.log('slet');
+
     } catch (error) {
         console.log(error);
 
     }
 }
 
+function openDeleteModal(userId: string, userName: string) {
+    selectedUser.value = {
+        id: userId,
+        name: userName
+    }
+    showRemove.value = true
+}
 
 </script>
 

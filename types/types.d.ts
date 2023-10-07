@@ -32,7 +32,7 @@ declare global {
   };
 
   // Outputs
-  type UserByName = RouterOutput['usersRouter']['byName']
+  type User = RouterOutput['usersRouter']['byName']
   type StudentList = RouterOutput['usersRouter']['studentList']
   type GroupsByUser = RouterOutput['usersInGroupsRouter']['groupsByUser']
   type Groups = RouterOutput['groupsRouter']['list']
@@ -43,4 +43,4 @@ declare global {
 
 }
 
-export { UserByName, UsersList, GroupsByUser, Groups, RegisterUser, createGroup}
+export { User as UserByName, UsersList, GroupsByUser, Groups, RegisterUser, createGroup}

@@ -14,16 +14,17 @@
                         <div class="col-span-1">
                             <div
                                 class="md:text-[2.5rem] text-2xl font-extrabold font-lilita hover:text-primary-focus">
-                                <NuxtLink to="/"> <span class="text-primary ">Skole</span><span class="text-primary-content">Tjek</span> </NuxtLink>
+                                <NuxtLink to="/"> <span class="text-primary ">Skole</span><span class="tex">Tjek</span> </NuxtLink>
                             </div>
                         </div>
                         <div class="col-span-1 justify-center  h-14">
                             <div v-if="currentUser" class="md:inline-grid hidden grid-flow-col auto-cols-min justify-center  h-full w-full">
-                                <NavBtn name="Nyt ugeskema" path='/teacher/weekschedules/edit/[id]' side='left'
-                                    icon="fa-solid fa-folder-plus">
-                                </NavBtn>
+                                <TeacherNewWeekschedule v-if="currentUser.role > 1" side='left'
+                                   >
+                                </TeacherNewWeekschedule>
                                 <TeacherMenuDropdown v-if="currentUser.role > 1"></TeacherMenuDropdown>
                                 <NavBtn name="Bibliotek" path='/teacher/library' side='right' icon="fa-solid fa-book">
+                                </NavBtn><NavBtn name="Skoleadmin" path='/admin/school-admin' side='right' icon="fa-solid fa-lock">
                                 </NavBtn>
                             </div>
                         </div>

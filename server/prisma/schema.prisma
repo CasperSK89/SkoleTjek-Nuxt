@@ -11,9 +11,9 @@ datasource db {
 }
 
 model School {
-  id    String @id @default(uuid())
-  name  String @unique(map: "school name")
-  users User[]
+  id     String  @id @default(uuid())
+  name   String  @unique(map: "school name")
+  users  User[]
   groups Group[]
 }
 
@@ -26,7 +26,7 @@ model User {
   createdAt  DateTime        @default(now())
   updatedAt  DateTime        @default(now()) @updatedAt
   activeFrom DateTime        @default(now())
-  school     School?          @relation(fields: [schoolId], references: [id])
+  school     School?         @relation(fields: [schoolId], references: [id])
   schoolId   String?
   groups     UsersInGroups[]
 }
@@ -37,7 +37,7 @@ model Group {
   year       Int
   createdAt  DateTime        @default(now())
   activeFrom DateTime
-  school     School?          @relation(fields: [schoolId], references: [id])
+  school     School?         @relation(fields: [schoolId], references: [id])
   schoolId   String?
   users      UsersInGroups[]
 }
@@ -45,8 +45,13 @@ model Group {
 model UsersInGroups {
   user    User   @relation(fields: [userId], references: [id])
   group   Group  @relation(fields: [groupId], references: [id])
-  userId  String 
-  groupId String 
+  userId  String
+  groupId String
 
   @@id([userId, groupId])
+}
+
+model Subject {
+  id   String @id @default(uuid())
+  name String @unique
 }

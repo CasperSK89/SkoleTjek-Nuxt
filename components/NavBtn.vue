@@ -31,6 +31,6 @@ defineNuxtLink({
 .router-link-active {
     @apply bg-base-300;
     @apply bg-opacity-40;
-    @apply text-primary-content;
+    @apply text-primary;
 }
 </style>

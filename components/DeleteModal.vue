@@ -4,9 +4,10 @@
                 <button type="button" @click="closeModal()" class="btn btn-sm btn-outline btn-circle absolute right-2 top-2">
                     ✕
                 </button>
-                <div class="flex flex-col  text-center">
-                    <slot></slot>
-                    <p>Er du sikker?</p>
+                <div class="flex flex-col  text-center pt-6 ">
+                    <slot>
+                        <p>Er du sikker?</p>
+                    </slot>
                 </div>
                 <div class="modal-action justify-center">
 
@@ -20,7 +21,7 @@
 <script setup lang="ts">
 const props = defineProps({
     modelValue: Boolean,
-    deleteFunction: Promise<void>
+    deleteFunction: { type: Function, required: true },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -31,7 +32,7 @@ const closeModal = () => {
 
 function remove(){
 
-    props.deleteFunction
+    props.deleteFunction()
     closeModal()
 }
 </script>
